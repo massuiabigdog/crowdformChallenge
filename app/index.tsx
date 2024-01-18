@@ -1,14 +1,16 @@
 import { registerRootComponent } from "expo";
 
-import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { View } from 'react-native';
 
 import { AppNavigation } from "./config/Navigation";
+import { AuthProvider } from './context/index';
 
 function App() {
   return (
     <View style={{ flex: 1 }}>
-      <AppNavigation />
+      <AuthProvider>
+        <AppNavigation />
+      </AuthProvider>
     </View>
   );
 }
