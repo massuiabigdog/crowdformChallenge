@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Login from '../../screens/Login';
 import Dashboard from '../../screens/Dashboard';
 import Cashout from '../../screens/Cashout';
-import Signin from '../../screens/Signin';
+import Signup from '../../screens/Signup';
 import { useContext } from "react";
 import { AuthContext } from "../../context";
 
@@ -24,7 +24,7 @@ export const AppNavigation: React.FC = () => {
         </Stack.Navigator> :
           <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Login" component={Login} />
-            <Stack.Screen name="Signin" component={Signin} />
+            <Stack.Screen name="SignUp" component={Signup} />
           </Stack.Navigator>
       }
     </NavigationContainer>

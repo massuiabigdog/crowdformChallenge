@@ -1,12 +1,12 @@
 import React from 'react';
-import { Text, ITextProps } from 'native-base';
+import { Text } from 'native-base';
 
-interface CustomTextProps extends ITextProps {
+interface CustomTextProps {
     children: string;
 }
 
-const CustomText: React.FC<CustomTextProps> = ({ children, ...rest }) => {
-    return <Text {...rest}>{children}</Text>;
+const CustomText: React.FC<CustomTextProps> = ({ children }) => {
+    return <Text>{children}</Text>;
 };
 
 export default CustomText;

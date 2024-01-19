@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 
-function SignIn({navigation}: {navigation: any})  {
+function SignUp({navigation}: {navigation: any})  {
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>SignIn</Text>
@@ -12,4 +12,4 @@ function SignIn({navigation}: {navigation: any})  {
     );
 };
 
-export default SignIn;
+export default SignUp;

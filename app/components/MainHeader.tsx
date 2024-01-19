@@ -3,7 +3,11 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const MainHeader = () => {
+type MainHeaderProps = {
+    label: string;
+};
+
+const MainHeader: React.FC<MainHeaderProps> = ({ label }) => {
     return (
         <>
             <StatusBar backgroundColor="violet.800" barStyle="light-content" />
@@ -11,7 +15,7 @@ const MainHeader = () => {
             <HStack h={20} bg="violet.800" px="1" py="3" justifyContent="space-between" alignItems="center" w="100%" >
                 <HStack alignItems="center">
                     <Text color="white" fontSize="20" w='100%' textAlign='center' fontWeight="bold">
-                        Home
+                        {label}
                     </Text>
                 </HStack>
             </HStack>
