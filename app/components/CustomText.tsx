@@ -2,7 +2,7 @@ import React from 'react';
 import { Text } from 'native-base';
 
 interface CustomTextProps {
-    children: string;
+    children: any;
 }
 
 const CustomText: React.FC<CustomTextProps> = ({ children }) => {

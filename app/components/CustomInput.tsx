@@ -6,10 +6,11 @@ interface CustomInputProps {
     value?: string;
     rightElement?: React.ReactNode; // Add rightElement prop
     isPassword?: boolean;
+    placeholder?: string;
     onChange: (value: string) => void; // Add onChange prop
 }
 
-const CustomInput: React.FC<CustomInputProps> = ({ label, onChange, value, rightElement, isPassword }) => {
+const CustomInput: React.FC<CustomInputProps> = ({ label, onChange, value, rightElement, isPassword, placeholder }) => {
     const handleInputChange = (value: string) => {
         onChange(value); // Call onChange prop with the updated value
     };
@@ -18,7 +19,7 @@ const CustomInput: React.FC<CustomInputProps> = ({ label, onChange, value, right
             <Box alignItems="center">
                 <FormControl>
                     <FormControl.Label>{label}</FormControl.Label>
-                    <Input type={isPassword ? 'password' : 'text'} InputRightElement={rightElement ? rightElement : <></>} h='44px' borderRadius='15px' placeholder={label} value={value} onChangeText={handleInputChange} />
+                    <Input type={isPassword ? 'password' : 'text'} InputRightElement={rightElement ? rightElement : <></>} h='44px' borderRadius='15px' placeholder={placeholder || label} value={value} onChangeText={handleInputChange} />
                 </FormControl>
             </Box>
 

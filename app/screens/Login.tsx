@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Pressable } from 'react-native';
 import { AuthContext } from '../context';
 import { BottomContent, CustomButton, CustomInput, CustomLink, CustomText, MainContainer, MainHeader } from '../components';
-import { Box } from 'native-base';
+import { Box, Checkbox, Text } from 'native-base';
 
 import LoginItem from '../assets/LoginIcon';
 import EyeIcon from '../assets/EyeIcon';
@@ -20,6 +20,10 @@ function Login({ navigation }: { navigation: any }) {
   }
   const allowedToLogin = formIsValid();
 
+
+  const handleSignIn = () => {
+    signIn(email, password);
+  };
   return (
     <>
       <MainHeader label='Log in' />
@@ -29,19 +33,20 @@ function Login({ navigation }: { navigation: any }) {
           <CustomText>Log in to continue</CustomText>
           <LoginItem />
           <CustomInput label="Email" onChange={(e) => setEmail(e)} value={email} />
-          <CustomInput isPassword={isPasswordVisible} label="Password" rightElement={<Pressable onPress={() => setIsPasswordVisible(!isPasswordVisible)}>
-            <Box opacity={isPasswordVisible ? 1 : .5}>
+          <CustomInput isPassword={!isPasswordVisible} label="Password" rightElement={<Pressable onPress={() => setIsPasswordVisible(!isPasswordVisible)}>
+            <Box opacity={!isPasswordVisible ? 1 : .5}>
               <EyeIcon />
             </Box>
           </Pressable>} onChange={(e) => setPassword(e)} value={password} />
           <Box marginLeft='auto' marginTop={3} >
-            <CustomLink onPress={() => navigation.navigate('SignUp')}>Forgot your password ?</CustomLink>
+            <CustomLink onPress={() => alert('toDo')}>Forgot your password ?</CustomLink>
           </Box>
         </>
 
       </MainContainer>
       <BottomContent>
-        <CustomButton disabled={!allowedToLogin} onPress={signIn}>Log in</CustomButton>
+
+        <CustomButton disabled={!allowedToLogin} onPress={() => handleSignIn()}>Log in</CustomButton>
         <Box flexDir='row'>
           <CustomText>{'Dont have an account? '}</CustomText>
           <CustomLink onPress={() => navigation.navigate('SignUp')}>Sign Up</CustomLink>
