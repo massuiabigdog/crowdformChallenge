@@ -1,17 +1,16 @@
 import { registerRootComponent } from "expo";
 
-import { View } from 'react-native';
-
 import { AppNavigation } from "./config/Navigation";
 import { AuthProvider } from './context/index';
+import { NativeBaseProvider, Container } from "native-base";
 
 function App() {
   return (
-    <View style={{ flex: 1 }}>
+    <NativeBaseProvider>
       <AuthProvider>
         <AppNavigation />
       </AuthProvider>
-    </View>
+    </NativeBaseProvider>
   );
 }
 

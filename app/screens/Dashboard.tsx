@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import {  StyleSheet, Text, View } from 'react-native';
+import { Button } from 'native-base';
 import styled from 'styled-components/native';
 import { AuthContext } from '../context';
 
@@ -10,9 +11,9 @@ function Dashboard({navigation}: {navigation: any})  {
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>Dashboard</Text>
         <Button
-          title="Go to Details"
+          
           onPress={() => signOut()}
-        />
+        >Go to Details</Button>
       </View>
     );
 };
