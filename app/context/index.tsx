@@ -7,6 +7,7 @@ export interface AuthContextType {
   signIn: (email: string, password: string) => void;
   signOut: () => void;
   isSignedIn: boolean;
+  userName: string;
   signUp: (user: any) => void;
 }
 
@@ -25,8 +26,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const authContextValue: AuthContextType = {
     signIn: (email, password) => {
-      console.log(users)
-      console.log(email, password)
       const user = users.find((user: { email: string, password: string }) => user.email === email);
       if (!user) {
         toast.show({
@@ -60,6 +59,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setUsers([...users, user]);
     },
     isSignedIn,
+    userName: `${users[0].firstName} ${users[0].lastName}`
   };
 
   return (

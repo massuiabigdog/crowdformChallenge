@@ -1,6 +1,6 @@
 import { Avatar, Box, Checkbox, HStack, ScrollView } from 'native-base';
-import React from 'react';
-import { StyleSheet, TouchableOpacity, } from 'react-native';
+import React, { useContext } from 'react';
+import { StatusBar, StyleSheet, TouchableOpacity, } from 'react-native';
 import { CustomButton, CustomInput, CustomText, MainContainer } from '../components';
 
 import BackArrowIcon from '../assets/BackArrowIcon';
@@ -8,9 +8,12 @@ import BankIcon from '../assets/BankIcon';
 import UserIcon from '../assets/UserIcon';
 import AddIcon from '../assets/AddIcon';
 import ArrowInput from '../assets/ArrowInput';
+import { UserContext } from '../context/user';
+import { colors } from '../utils';
 
 function Cashout({ navigation }: { navigation: any }) {
 
+  const {availableAmount, sendMoney} = useContext(UserContext);
   const contacts = [
     {
       name: 'Kitty',
@@ -27,15 +30,15 @@ function Cashout({ navigation }: { navigation: any }) {
   ]
   const transactionTypes = [
     {
-      name: 'Transfer via card number',
+      name: 'Transfer via\ncard number',
       icon: <BankIcon />,
     },
     {
-      name: 'Transfer to the same bank',
+      name: 'Transfer to\nthe same bank',
       icon: <UserIcon />,
     },
     {
-      name: 'Transfer to another bank',
+      name: 'Transfer to\nanother bank',
       icon: <BankIcon />,
     },
   ]
@@ -46,72 +49,83 @@ function Cashout({ navigation }: { navigation: any }) {
   const [amount, setAmount] = React.useState('')
   const [saveDetails, setSaveDetails] = React.useState(false)
 
+
+  const handleConfirm = () => {
+    sendMoney(Number(amount), selectedContact);
+    navigation.navigate('Dashboard');
+  }
   return (
     <>
-      <Box safeAreaTop bg="violet.400" />
-      <HStack h={20} bg="violet.800" px="1" py="3" justifyContent="space-between" alignItems="center" w="100%" >
+      <Box safeAreaTop bg="white" />
+      <StatusBar backgroundColor="violet.800" barStyle="dark-content" />
 
-        <HStack alignItems="center">
-          <TouchableOpacity onPress={() => navigation.goBack()}>
+      <HStack h={20} bg="white" px="1" py="3" justifyContent="space-between" alignItems="center" w="100%" >
+
+        <HStack  alignItems="center">
+          <TouchableOpacity style={{height: 20, width: 20, marginLeft: 14}}  onPress={() => navigation.goBack()}>
             <BackArrowIcon />
           </TouchableOpacity>
-          <CustomText>
+          <CustomText h2 bold marginLeft={2} marginBottom={1}>
             Send Money
           </CustomText>
         </HStack>
       </HStack>
       <ScrollView>
 
-        <MainContainer>
-          <CustomInput label="Email" onChange={(e) => { }} value='VISA **** **** **** 1234' />
-          <CustomText>Available balance : $3469.52</CustomText>
-          <CustomText>Choose transaction</CustomText>
+        <MainContainer isInternalScreen>
+          <CustomInput paddingTop={20} label="Choose account/ card" onChange={(e) => { }} value='VISA **** **** **** 1234' />
+          <CustomText primary bold marginLeft={2} marginTop={2}>Available balance : ${availableAmount}</CustomText>
+          <CustomText gray bold marginTop={4} >Choose transaction</CustomText>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{ flexDirection: 'row' }}>
             {transactionTypes.map((item, index) => <TouchableOpacity key={index} onPress={() => setSelectedTransactionType(item.name)}
-              style={{ backgroundColor: selectedTransactionType === item.name ? '#cccccc' : '#000000', padding: 10, borderRadius: '15px', width: 120, height: 100, alignItems: 'center', margin: 10 }}>
+              style={{ backgroundColor: selectedTransactionType === item.name ? '#FFAF2A' : '#E0E0E0', padding: 10, borderRadius: '15px', width: 120, height: 100, alignItems: 'center', margin: 10 }}>
               <Box >
                 {item.icon}
-                <CustomText>{item.name}</CustomText>
+                <CustomText marginTop={2}  white small>{item.name}</CustomText>
               </Box>
 
             </TouchableOpacity>)}
           </ScrollView>
-          <Box flexDir='row' justifyContent='space-around'>
-            <CustomText >Choose payee</CustomText>
-            <CustomText>Search payee</CustomText>
+          <Box flexDir='row' justifyContent='space-between'>
+            <CustomText gray bold >Choose payee</CustomText>
+            <CustomText primary bold >Search payee</CustomText>
           </Box>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{ flexDirection: 'row' }}>
-            <TouchableOpacity>
-              <Box style={styles.contactBox} >
-                <Box bg='amber.100' w='60px' h='60px' margin='auto' borderRadius='100%'>
+            <TouchableOpacity >
+              <Box  bg={'white'}  style={styles.contactBox} >
+                <Box bg='#F2F1F9' w='60px' h='60px' margin='auto' borderRadius='100%'>
                   <Box m='auto'>
                     <AddIcon />
                   </Box>
                 </Box>
               </Box>
             </TouchableOpacity>
-            {contacts.map((item, index) => <TouchableOpacity key={index} onPress={() => setSelectedContact(item.name)}>
-              <Box style={styles.contactBox} bg={item.name === selectedContact ? '#cccccc' : 'amber.100' }>
+            {contacts.map((item, index) => {
+              const isSelect = item.name === selectedContact;
+              return <TouchableOpacity key={index} onPress={() => setSelectedContact(item.name)}>
+              <Box style={styles.contactBox} bg={isSelect ?   colors.primary : 'white' }>
                 <Box m='auto' textAlign='center'>
-                  <Avatar size='50px' source={{
+                  <Avatar size='60px' source={{
                     uri: item.image
                   }} />
-                  <CustomText>{item.name}</CustomText>
+                  <CustomText marginTop={4} margin='auto' small white={isSelect}>{item.name}</CustomText>
                 </Box>
               </Box>
-            </TouchableOpacity>)}
+            </TouchableOpacity>
+            }
+            )}
           </ScrollView>
-          <Box style={styles.sendMoneyFormContainer} padding={4} shadow='3'>
+          <Box style={styles.sendMoneyFormContainer} padding={4}>
             <CustomInput rightElement={<ArrowInput />} label="Choose bank" onChange={(e) => null} value='Citibank' />
             <CustomInput rightElement={<ArrowInput />} label="Choose branch" onChange={(e) => null} value='New York' />
             <CustomInput label="Payee name" onChange={(e) => setSelectedContact(e)} value={selectedContact} />
             <CustomInput label="Card number" onChange={() => null} value='1235 6478 990' />
-            <CustomInput label="Amount" onChange={(e: string) => setAmount(e)} value={amount} />
+            <CustomInput keyboardType='numeric' label="Amount" onChange={(e: string) => setAmount(e)} value={amount} />
             <CustomInput label="Reference" onChange={() => null} value='Cinema Tickets' />
             <Box flexDir='row'>
               <Checkbox isChecked={saveDetails} colorScheme="green" value='' onChange={setSaveDetails}> <CustomText>Save Payee details</CustomText></Checkbox>
             </Box>
-            <CustomButton onPress={() => null}>Confirm</CustomButton>
+            <CustomButton onPress={() => handleConfirm()}>Confirm</CustomButton>
           </Box>
         </MainContainer>
       </ScrollView>
@@ -131,6 +145,8 @@ const styles = StyleSheet.create({
       width: 0,
       height: 2,
     },
+    shadowOpacity: 0.16,
+    shadowRadius: 30,
   },
   contactBox: {
     shadowColor: "#000",
@@ -139,7 +155,7 @@ const styles = StyleSheet.create({
       height: 2,
     },
     shadowOpacity: 0.23,
-    shadowRadius: 2.62,
+    shadowRadius: 4.62,
      padding: 10, borderRadius: 15, width: 100, height: 120, alignItems: 'center', margin: 10
   },
   container: {

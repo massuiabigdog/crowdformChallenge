@@ -1,52 +1,36 @@
 import { Box, Text, HStack, Icon, IconButton, StatusBar } from 'native-base';
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import CustomText from './CustomText';
+import { colors } from '../utils';
 
 type MainHeaderProps = {
     label: string;
-    isDashboard?: boolean;
+    showAvailableAmount?: string;
 };
 
-const MainHeader: React.FC<MainHeaderProps> = ({ label, isDashboard }) => {
+const MainHeader: React.FC<MainHeaderProps> = ({ label, showAvailableAmount }) => {
     return (
         <>
-        <SafeAreaView style={{zIndex: -1}}>
-
-            <StatusBar backgroundColor="violet.800" barStyle="light-content" />
-            <Box safeAreaTop bg="violet.400" />
-            <HStack h={20} bg="violet.800" px="1" py="3" justifyContent="space-between" alignItems="center" w="100%" >
-                <HStack alignItems="center">
-                    <Text color="white" fontSize={'16px'} w='100%' textAlign='center'>
-                        {label}
-                    </Text>
+            <SafeAreaView style={{ zIndex: -1 }}>
+                <StatusBar backgroundColor={colors.primary} barStyle="light-content" />
+                <Box safeAreaTop bg={colors.primary} />
+                <HStack h={20} bg={colors.primary} px="1" py="3" justifyContent="space-between" alignItems="center" w="100%" >
+                    <HStack alignItems="center">
+                        <CustomText color="white" bold w='100%' textAlign='center'>
+                            {label}
+                        </CustomText>
+                    </HStack>
                 </HStack>
-            </HStack>
-        </SafeAreaView>
-
+            </SafeAreaView>
             {
-                isDashboard && <Text paddingBottom={20} bg='violet.800' color="white" fontSize="20" w='100%' textAlign='center' fontWeight="bold">
-                    {label}
-                </Text>
+                showAvailableAmount && <CustomText h1 bold paddingBottom={20}  marginTop={-5} bg={colors.primary} color="white" fontSize="20" w='100%' textAlign='center' fontWeight="bold">
+                    {showAvailableAmount}
+                </CustomText>
             }
-            <Box zIndex={-2} bg="violet.800" w='100%' height={10} />
+            <Box zIndex={-2} bg={colors.primary} w='100%' height={10} />
         </>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        backgroundColor: 'lightblue',
-        auto: 10,
-        margin: 'auto',
-        textAlign: 'center',
-        alignItems: 'center',
-
-    },
-    title: {
-        fontSize: 20,
-        fontWeight: 'bold',
-    },
-});
 
 export default MainHeader;

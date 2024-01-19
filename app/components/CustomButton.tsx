@@ -7,6 +7,7 @@ interface CustomButtonProps extends IButtonProps {
 }
 
 const CustomButton: React.FC<CustomButtonProps> = (props) => {
+
     return <Button isDisabled={props.disabled} {...props} />;
 };
 
