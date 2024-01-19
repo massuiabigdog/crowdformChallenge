@@ -7,7 +7,7 @@ interface MainContainerProps {
 
 const MainContainer: React.FC<MainContainerProps> = ({ children }) => {
     return (
-        <View borderRadius={30} height='auto' marginTop={-10} bg='white' p='25px'>
+        <View borderRadius={30} zIndex={99} height='auto' marginTop={-10} bg='white' p='25px'>
             {children}
         </View>
     );

@@ -11,6 +11,8 @@ type MainHeaderProps = {
 const MainHeader: React.FC<MainHeaderProps> = ({ label, isDashboard }) => {
     return (
         <>
+        <SafeAreaView style={{zIndex: -1}}>
+
             <StatusBar backgroundColor="violet.800" barStyle="light-content" />
             <Box safeAreaTop bg="violet.400" />
             <HStack h={20} bg="violet.800" px="1" py="3" justifyContent="space-between" alignItems="center" w="100%" >
@@ -18,16 +20,16 @@ const MainHeader: React.FC<MainHeaderProps> = ({ label, isDashboard }) => {
                     <Text color="white" fontSize={'16px'} w='100%' textAlign='center'>
                         {label}
                     </Text>
-
                 </HStack>
             </HStack>
+        </SafeAreaView>
 
             {
                 isDashboard && <Text paddingBottom={20} bg='violet.800' color="white" fontSize="20" w='100%' textAlign='center' fontWeight="bold">
                     {label}
                 </Text>
             }
-            <Box bg="violet.800" w='100%' height={10} />
+            <Box zIndex={-2} bg="violet.800" w='100%' height={10} />
         </>
     );
 };

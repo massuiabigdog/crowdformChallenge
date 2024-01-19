@@ -30,10 +30,9 @@ function Dashboard({ navigation }: { navigation: any }) {
   return (
     <>
     <ScrollView>
-
       <MainHeader isDashboard label='Current account' />
       <MainContainer>
-        <Box  marginTop={-20}>
+        <Box  marginTop={-20} zIndex={99}>
           <CreditCardIcon />
         </Box>
         <CustomButton startIcon={<SendMoneyIcon />} onPress={() => navigation.navigate('Cashout')}>Send Money </CustomButton>

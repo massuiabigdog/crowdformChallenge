@@ -19,7 +19,7 @@ const CustomInput: React.FC<CustomInputProps> = ({ label, onChange, value, right
             <Box alignItems="center">
                 <FormControl>
                     <FormControl.Label>{label}</FormControl.Label>
-                    <Input type={isPassword ? 'password' : 'text'} InputRightElement={rightElement ? rightElement : <></>} h='44px' borderRadius='15px' placeholder={placeholder || label} value={value} onChangeText={handleInputChange} />
+                    <Input  type={isPassword ? 'password' : 'text'} InputRightElement={rightElement ? rightElement : <></>} h='44px' borderRadius='15px' placeholder={placeholder || label} value={value} onChangeText={handleInputChange} />
                 </FormControl>
             </Box>
 
