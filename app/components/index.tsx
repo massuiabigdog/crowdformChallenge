@@ -5,5 +5,6 @@ import BottomContent from "./BottomContent";
 import CustomInput from "./CustomInput";
 import CustomButton from "./CustomButton";
 import CustomLink from "./CustomLink";
+import ListTransactions from "./ListTransactions";
 
-export { CustomButton, CustomInput, CustomLink, BottomContent, MainHeader, MainContainer, CustomText };
+export { ListTransactions, CustomButton, CustomInput, CustomLink, BottomContent, MainHeader, MainContainer, CustomText };

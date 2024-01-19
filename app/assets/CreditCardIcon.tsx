@@ -5,9 +5,9 @@ import Svg, { G, Rect, Path, Mask, Defs } from "react-native-svg"
 function SvgComponent(props: any) {
   return (
     <Svg
-      width={375}
-      height={243}
-      viewBox="0 0 375 243"
+      width={400}
+      height={300}
+      viewBox="0 0 400 300"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
@@ -31,8 +31,8 @@ function SvgComponent(props: any) {
           maskUnits="userSpaceOnUse"
           x={24}
           y={26}
-          width={327}
-          height={166}
+          width={400}
+          height={300}
         >
           <Path
             d="M336.783 26H38.217C30.365 26 24 31.09 24 37.37v143.26c0 6.28 6.365 11.37 14.217 11.37h298.566c7.852 0 14.217-5.09 14.217-11.37V37.37c0-6.28-6.365-11.37-14.217-11.37z"
