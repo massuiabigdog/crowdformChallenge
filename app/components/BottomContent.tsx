@@ -7,7 +7,7 @@ interface BottomContentProps {
 
 const BottomContent = ({ children }: BottomContentProps) => {
     return (
-        <View style={{ flex: 1, justifyContent: 'flex-end', backgroundColor: 'white' }}>
+        <View style={{ position: 'absolute', width: '100%', bottom: 0, flex: 1, justifyContent: 'flex-end', backgroundColor: 'white' }}>
             <View style={{margin: 20, marginBottom: 30}}>
                 {children}
             </View>

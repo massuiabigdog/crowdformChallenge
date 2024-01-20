@@ -20,14 +20,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     {
       email: 'Test@test.com',
       password: '12341234',
-      firstName: 'Test',
-      lastName: 'Last',
+      firstName: 'John',
+      lastName: 'Doe',
     }
   ]) as any[];
 
+  const tranformEmailToLowerCaseAndCompare = (receivedEmail: string, userMail: string) => {
+    console.log(userMail, receivedEmail)
+    return userMail.toLowerCase() === receivedEmail.toLowerCase();
+   }
+
   const authContextValue: AuthContextType = {
     signIn: (email, password) => {
-      const user = users.find((user: { email: string, password: string }) => user.email === email);
+      const user = users.find((user: { email: string, password: string }) => tranformEmailToLowerCaseAndCompare(email, user.email));
       if (!user) {
         toast.show({
           render: () => {

@@ -27,7 +27,7 @@ function Login({ navigation }: { navigation: any }) {
   };
   return (
     <>
-      <ScrollView>
+      <ScrollView bg='white'>
       <MainHeader label='Log in' />
       <MainContainer>
         <>
@@ -47,6 +47,8 @@ function Login({ navigation }: { navigation: any }) {
           </Box>
         </>
       </MainContainer>
+      </ScrollView>
+
       <BottomContent >
         <CustomButton primary disabled={!allowedToLogin} onPress={(e) => handleSignIn(e)}>Log in</CustomButton>
         <Box marginTop={8} marginBottom={8} margin='auto' flexDir='row'>
@@ -54,7 +56,7 @@ function Login({ navigation }: { navigation: any }) {
           <CustomLink primary onPress={() => navigation.navigate('SignUp')}>Sign Up</CustomLink>
         </Box>
       </BottomContent>
-      </ScrollView>
+
     </>
 
 

@@ -232,7 +232,7 @@ function Cashout({ navigation }: { navigation: any }) {
                 value=""
                 onChange={setSaveDetails}
               >
-                <CustomText marginLeft={isIos ? -4 : 0} primary>
+                <CustomText primary>
                   Save Payee details
                 </CustomText>
               </Checkbox>
