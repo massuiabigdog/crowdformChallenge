@@ -1,15 +1,17 @@
 import { registerRootComponent } from "expo";
-import { NativeBaseProvider, extendTheme } from "native-base";
-import AppLoading from 'expo-app-loading';
-import * as Font from 'expo-font';
 
 import { AppNavigation } from "./config/Navigation";
 import { AuthProvider } from './context/index';
 import { UserProvider } from './context/user';
+import AppLoading from 'expo-app-loading';
+import * as Font from 'expo-font';
+import { LogBox } from 'react-native';
 
+import { NativeBaseProvider,  extendTheme } from "native-base";
 import { useState } from "react";
 
 function App() {
+  LogBox.ignoreAllLogs();//Ignore all log notifications
 
   const fetchFonts = () => {
     return Font.loadAsync({
@@ -20,7 +22,20 @@ function App() {
   };
 
   const theme = extendTheme({
-
+    colors: {
+      primary: {
+        50: "#3629B7",
+        100: "#3629B7",
+        200: "#3629B7",
+        300: "#3629B7",
+        400: "#3629B7",
+        500: "#3629B7",
+        600: "#3629B7",
+        700: "#3629B7",
+        800: "#3629B7",
+        900: "#3629B7",
+      },
+    },
     fontConfig: {
       Poppins: {
         100: {
