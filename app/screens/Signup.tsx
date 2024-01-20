@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../context';
 import { BottomContent, CustomButton, CustomInput, CustomLink, CustomText, MainContainer, MainHeader } from '../components';
-import { Box, Checkbox } from 'native-base';
+import { Box, Checkbox, ScrollView } from 'native-base';
 import { colors, emailIsValid } from '../utils';
 
 function SignUp({ navigation }: { navigation: any }) {
@@ -24,7 +24,7 @@ function SignUp({ navigation }: { navigation: any }) {
   }
 
   return (
-    <>
+    <ScrollView>
       <MainHeader label='Sign up' />
       <MainContainer>
         <>
@@ -49,7 +49,7 @@ function SignUp({ navigation }: { navigation: any }) {
           <CustomText>{'Already have an account?  '}</CustomText>
           <CustomLink primary onPress={() => navigation.navigate('Login')}>Log in</CustomLink>
         </Box>
-      </BottomContent></>
+      </BottomContent></ScrollView>
   );
 };
 

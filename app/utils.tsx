@@ -1,3 +1,5 @@
+import { Platform } from "react-native";
+
 export const emailIsValid = (email: string) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
@@ -12,3 +14,5 @@ export const colors = {
     gray: '#979797',
     blue: '#1573FF'
 }
+
+export const isIos = Platform.OS === 'ios';

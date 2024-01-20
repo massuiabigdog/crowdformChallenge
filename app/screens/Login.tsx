@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Pressable } from 'react-native';
 import { AuthContext } from '../context';
 import { BottomContent, CustomButton, CustomInput, CustomLink, CustomText, MainContainer, MainHeader } from '../components';
-import { Box } from 'native-base';
+import { Box, ScrollView } from 'native-base';
 
 import LoginItem from '../assets/LoginIcon';
 import EyeIcon from '../assets/EyeIcon';
@@ -27,6 +27,7 @@ function Login({ navigation }: { navigation: any }) {
   };
   return (
     <>
+      <ScrollView>
       <MainHeader label='Log in' />
       <MainContainer>
         <>
@@ -53,6 +54,7 @@ function Login({ navigation }: { navigation: any }) {
           <CustomLink primary onPress={() => navigation.navigate('SignUp')}>Sign Up</CustomLink>
         </Box>
       </BottomContent>
+      </ScrollView>
     </>
 
 

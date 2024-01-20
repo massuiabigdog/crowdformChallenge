@@ -6,18 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "plugins": [
-      [
-        "expo-font",
-        {
-          "fonts": [
-            "./app/assets/fonts/Poppins-Bold.ttf",
-            "./app/assets/fonts/Poppins-Light.ttf",
-            "./app/assets/fonts/Poppins-Medium.ttf"
-          ]
-        }
-      ]
-    ],
+
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",

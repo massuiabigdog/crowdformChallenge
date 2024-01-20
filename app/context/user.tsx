@@ -33,7 +33,6 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
     sendMoney: (amount, contact) => {
       let newChart = transactionsAmount
       newChart[newChart.length - 1] = newChart[newChart.length - 1] + amount;
-      console.log(newChart, 'newChart')
       setTransactions([{
         id: String(Math.random()),
         date: 'Today',

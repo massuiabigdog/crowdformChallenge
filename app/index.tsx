@@ -15,11 +15,27 @@ function App() {
 
   const fetchFonts = () => {
     return Font.loadAsync({
-      'Poppins-Medium': require('./assets/fonts/Poppins-Medium.ttf'),
-      'Poppins-Light': require('./assets/fonts/Poppins-Light.ttf'),
-      'Poppins-Bold': require('./assets/fonts/Poppins-Bold.ttf')
+      'Poppins': require('../assets/fonts/Poppins-Medium.ttf'),
+      'Poppins-Light': require('../assets/fonts/Poppins-Light.ttf'),
+      'Poppins-Medium': require('../assets/fonts/Poppins-Medium.ttf'),
+      'Poppins-Bold': require('../assets/fonts/Poppins-Bold.ttf'),
+
     });
   };
+  
+  
+  const [fontLoaded, setFontLoaded] = useState(false);
+  
+  if (!fontLoaded) {
+    return (
+      <AppLoading
+        startAsync={fetchFonts}
+        onFinish={() => setFontLoaded(true)}
+        onError={console.warn}
+      />
+    );
+  }
+
 
   const theme = extendTheme({
     colors: {
@@ -69,17 +85,6 @@ function App() {
     },
   });
 
-  const [fontLoaded, setFontLoaded] = useState(false);
-
-  if (!fontLoaded) {
-    return (
-      <AppLoading
-        startAsync={fetchFonts}
-        onFinish={() => setFontLoaded(true)}
-        onError={console.warn}
-      />
-    );
-  }
 
   return (
     <NativeBaseProvider theme={theme}>
