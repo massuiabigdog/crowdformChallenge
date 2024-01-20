@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { AuthContext } from '../context';
 import { BottomContent, CustomButton, CustomInput, CustomLink, CustomText, MainContainer, MainHeader } from '../components';
 import { Box, Checkbox } from 'native-base';
-import { emailIsValid } from '../utils';
+import { colors, emailIsValid } from '../utils';
 
 function SignUp({ navigation }: { navigation: any }) {
   const { signUp } = useContext(AuthContext);
@@ -28,25 +28,26 @@ function SignUp({ navigation }: { navigation: any }) {
       <MainHeader label='Sign up' />
       <MainContainer>
         <>
-          <CustomText>Create an account</CustomText>
-          <CustomText>Add your personal details below</CustomText>
+          <CustomText h1 primary bold>Create an account</CustomText>
+          <CustomText marginBottom={15}>Add your personal details below</CustomText>
           <CustomInput label="First Name" onChange={(e) => setFirstName(e)} value={firstName} />
           <CustomInput label="Last Name" onChange={(e) => setLastName(e)} value={lastName} />
           <CustomInput label="Email" onChange={(e) => setEmail(e)} value={email} />
-          <CustomInput isPassword={true} label="Password" placeholder='Password (Min. 8 characters)'  onChange={(e) => setPassword(e)} value={password} />
+          <CustomInput isPassword={true} label="Password" placeholder='Password (Min. 8 characters)' onChange={(e) => setPassword(e)} value={password} />
           <Box flexDir='row'>
-            <Checkbox isChecked={agreeWithTerms} colorScheme="green" value='' onChange={setAgreeWithTerms} />
-            <CustomText>By creating an account your agree
-              to our <CustomLink onPress={() => alert('ss')}> Term and Condtions </CustomLink></CustomText>
+            <Checkbox size='md' borderColor={colors.primary} backgroundColor={'white'} _icon={{ color: colors.primary }}
+              isChecked={agreeWithTerms} value='' onChange={setAgreeWithTerms}>
+              <CustomText>By creating an account your agree
+                to our <CustomLink primary onPress={() => alert('Todo')}>Term and Conditions </CustomLink></CustomText>
+            </Checkbox>
           </Box>
         </>
-
       </MainContainer>
       <BottomContent>
-        <CustomButton disabled={!allowedToLogin} onPress={() => handleSignup({email, password, firstName, lastName})}>Sign Up </CustomButton>
-        <Box flexDir='row'>
+        <CustomButton primary disabled={!allowedToLogin} onPress={() => handleSignup({ email, password, firstName, lastName })}>Sign Up</CustomButton>
+        <Box marginTop={8} marginBottom={8} margin='auto' flexDir='row'>
           <CustomText>{'Already have an account?  '}</CustomText>
-          <CustomLink onPress={() => navigation.navigate('Login')}>Log in</CustomLink>
+          <CustomLink primary onPress={() => navigation.navigate('Login')}>Log in</CustomLink>
         </Box>
       </BottomContent></>
   );

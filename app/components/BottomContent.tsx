@@ -8,8 +8,7 @@ interface BottomContentProps {
 const BottomContent = ({ children }: BottomContentProps) => {
     return (
         <View style={{ flex: 1, justifyContent: 'flex-end', backgroundColor: 'white' }}>
-            <View style={{marginBottom: 30}}>
-
+            <View style={{margin: 20, marginBottom: 30}}>
                 {children}
             </View>
         </View>

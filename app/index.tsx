@@ -1,12 +1,12 @@
 import { registerRootComponent } from "expo";
+import { NativeBaseProvider, extendTheme } from "native-base";
+import AppLoading from 'expo-app-loading';
+import * as Font from 'expo-font';
 
 import { AppNavigation } from "./config/Navigation";
 import { AuthProvider } from './context/index';
 import { UserProvider } from './context/user';
-import AppLoading from 'expo-app-loading';
-import * as Font from 'expo-font';
 
-import { NativeBaseProvider, Container, extendTheme } from "native-base";
 import { useState } from "react";
 
 function App() {
@@ -20,6 +20,7 @@ function App() {
   };
 
   const theme = extendTheme({
+
     fontConfig: {
       Poppins: {
         100: {
@@ -64,7 +65,6 @@ function App() {
       />
     );
   }
-
 
   return (
     <NativeBaseProvider theme={theme}>

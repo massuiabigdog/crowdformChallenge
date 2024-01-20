@@ -18,7 +18,7 @@ export const AppNavigation: React.FC = () => {
   return (
     <NavigationContainer>
       {
-        !isLogged ? <Stack.Navigator initialRouteName="Dashboard" screenOptions={{ headerShown: false }}>
+        isLogged ? <Stack.Navigator initialRouteName="Dashboard" screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Dashboard" component={Dashboard} />
           <Stack.Screen name="Cashout" component={Cashout} />
         </Stack.Navigator> :

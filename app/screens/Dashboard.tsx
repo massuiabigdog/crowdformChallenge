@@ -14,7 +14,7 @@ import {
 
 function Dashboard({ navigation }: { navigation: any }) {
   const { transactions, availableAmount, transactionsAmount } = useContext(UserContext);
-  const { userName } = useContext(AuthContext);
+  const { userName, signOut } = useContext(AuthContext);
   const [indexSelectedPoint, setIndexSelectedPoint] = useState(0);
   const white = 'white';
   const primary = '#295EFF';
@@ -34,14 +34,14 @@ function Dashboard({ navigation }: { navigation: any }) {
   return (
     <>
       <ScrollView>
-        <MainHeader showAvailableAmount={`$ ${availableAmount.toFixed(2)}`} label='Current account' />
+        <MainHeader signOutFunction={() => signOut()} showAvailableAmount={`$ ${availableAmount.toFixed(2)}`} label='Current account' />
         <MainContainer>
           <Box pointerEvents="none" margin='auto' width='fit-content' style={{
             transform: [{ scale: 1.17 }],
           }} marginTop={-20} marginBottom={30}>
             <CreditCardIcon owner={userName} />
           </Box>
-          <CustomButton _text={{
+          <CustomButton marginTop={4} _text={{
             color: colors.neutral1
           }} bg={colors.secondary} startIcon={<SendMoneyIcon />} onPress={() => navigation.navigate('Cashout')}>Send Money </CustomButton>
           <Box marginTop={4} flexDir='row'>
@@ -69,16 +69,15 @@ function Dashboard({ navigation }: { navigation: any }) {
               }}
               getDotColor={(value, index) => (index !== indexSelectedPoint ? (white) : (primary))}
               data={{
-                labels: dates,
+                labels: dates.reverse(),
                 datasets: [
                   {
                     data: transactionsAmount
                   }
                 ]
               }}
-              width={Dimensions.get("window").width + 80} // from react-native
+              width={Dimensions.get("window").width + 64} // from react-native
               height={220}
-
               withShadow={false}
               withVerticalLines={false}
               withHorizontalLabels={false}

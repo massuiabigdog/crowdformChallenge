@@ -8,7 +8,7 @@ interface MainContainerProps {
 
 const MainContainer: React.FC<MainContainerProps> = ({ children, isInternalScreen }) => {
     return (
-        <View borderRadius={isInternalScreen ? 0 : 30} zIndex={99} height='auto' marginTop={isInternalScreen ? 0 : -10} bg='white' p='25px'>
+        <View borderTopRadius={isInternalScreen ? 0 : 30} zIndex={99} height='auto' marginTop={isInternalScreen ? 0 : -10} bg='white' p='25px'>
             {children}
         </View>
     );

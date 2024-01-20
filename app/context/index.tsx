@@ -15,6 +15,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const toast = useToast();
 
   const [isSignedIn, setIsSignedIn] = useState(false);
+  const [userName, setUserName] = useState('') as any[];
   const [users, setUsers] = useState([
     {
       email: 'Test@test.com',
@@ -44,6 +45,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           </Box>;
         }
       });
+      setUserName(`${user.firstName} ${user.lastName}`);
       return setIsSignedIn(true)
     },
     signOut: () => setIsSignedIn(false),
@@ -55,11 +57,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           </Box>;
         }
       });
-
       setUsers([...users, user]);
     },
     isSignedIn,
-    userName: `${users[0].firstName} ${users[0].lastName}`
+    userName: userName
   };
 
   return (

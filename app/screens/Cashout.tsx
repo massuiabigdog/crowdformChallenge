@@ -43,13 +43,10 @@ function Cashout({ navigation }: { navigation: any }) {
     },
   ]
 
-
   const [selectedTransactionType, setSelectedTransactionType] = React.useState(transactionTypes[2].name)
   const [selectedContact, setSelectedContact] = React.useState(contacts[0].name)
   const [amount, setAmount] = React.useState('')
   const [saveDetails, setSaveDetails] = React.useState(false)
-
-
   const handleConfirm = () => {
     sendMoney(Number(amount), selectedContact);
     navigation.navigate('Dashboard');
@@ -58,9 +55,7 @@ function Cashout({ navigation }: { navigation: any }) {
     <>
       <Box safeAreaTop bg="white" />
       <StatusBar backgroundColor="violet.800" barStyle="dark-content" />
-
       <HStack h={20} bg="white" px="1" py="3" justifyContent="space-between" alignItems="center" w="100%" >
-
         <HStack  alignItems="center">
           <TouchableOpacity style={{height: 20, width: 20, marginLeft: 14}}  onPress={() => navigation.goBack()}>
             <BackArrowIcon />
@@ -70,10 +65,9 @@ function Cashout({ navigation }: { navigation: any }) {
           </CustomText>
         </HStack>
       </HStack>
-      <ScrollView>
-
+      <ScrollView marginTop={-4}>
         <MainContainer isInternalScreen>
-          <CustomInput paddingTop={20} label="Choose account/ card" onChange={(e) => { }} value='VISA **** **** **** 1234' />
+          <CustomInput label="Choose account/ card" onChange={(e) => { }} value='VISA **** **** **** 1234' />
           <CustomText primary bold marginLeft={2} marginTop={2}>Available balance : ${availableAmount}</CustomText>
           <CustomText gray bold marginTop={4} >Choose transaction</CustomText>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{ flexDirection: 'row' }}>
@@ -86,13 +80,13 @@ function Cashout({ navigation }: { navigation: any }) {
 
             </TouchableOpacity>)}
           </ScrollView>
-          <Box flexDir='row' justifyContent='space-between'>
+          <Box flexDir='row' marginTop={4} justifyContent='space-between'>
             <CustomText gray bold >Choose payee</CustomText>
             <CustomText primary bold >Search payee</CustomText>
           </Box>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{ flexDirection: 'row' }}>
-            <TouchableOpacity >
-              <Box  bg={'white'}  style={styles.contactBox} >
+            <TouchableOpacity  >
+              <Box   bg={'white'}  style={styles.contactBox} >
                 <Box bg='#F2F1F9' w='60px' h='60px' margin='auto' borderRadius='100%'>
                   <Box m='auto'>
                     <AddIcon />
@@ -120,12 +114,12 @@ function Cashout({ navigation }: { navigation: any }) {
             <CustomInput rightElement={<ArrowInput />} label="Choose branch" onChange={(e) => null} value='New York' />
             <CustomInput label="Payee name" onChange={(e) => setSelectedContact(e)} value={selectedContact} />
             <CustomInput label="Card number" onChange={() => null} value='1235 6478 990' />
-            <CustomInput keyboardType='numeric' label="Amount" onChange={(e: string) => setAmount(e)} value={amount} />
+            <CustomInput numeric label="Amount" onChange={(e: string) => setAmount(e)} value={amount} />
             <CustomInput label="Reference" onChange={() => null} value='Cinema Tickets' />
-            <Box flexDir='row'>
-              <Checkbox isChecked={saveDetails} colorScheme="green" value='' onChange={setSaveDetails}> <CustomText>Save Payee details</CustomText></Checkbox>
+            <Box flexDir='row' marginTop={6}>
+              <Checkbox size='md' borderColor={colors.primary} backgroundColor={'white'} _icon={{color: colors.primary}} isChecked={saveDetails} value='' onChange={setSaveDetails}> <CustomText marginLeft={-4} primary >Save Payee details</CustomText></Checkbox>
             </Box>
-            <CustomButton onPress={() => handleConfirm()}>Confirm</CustomButton>
+            <CustomButton primary onPress={() => handleConfirm()}>Confirm</CustomButton>
           </Box>
         </MainContainer>
       </ScrollView>
@@ -156,19 +150,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.23,
     shadowRadius: 4.62,
-     padding: 10, borderRadius: 15, width: 100, height: 120, alignItems: 'center', margin: 10
-  },
-  container: {
-    backgroundColor: 'lightblue',
-    auto: 10,
-    margin: 'auto',
-    textAlign: 'center',
-    alignItems: 'center',
-
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
+     padding: 10, borderRadius: 15, width: 100, height: 120, alignItems: 'center', margin: 10, marginLeft: 4
   },
 });
 

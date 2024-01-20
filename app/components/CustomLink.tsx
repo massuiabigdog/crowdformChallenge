@@ -1,15 +1,17 @@
 import React from 'react';
-import { TouchableOpacity, Text } from 'react-native';
+import { TouchableOpacity } from 'react-native';
+import CustomText from './CustomText';
 
-type LinkProps = {
+type LinkProps  = {
     onPress: () => void;
     children: React.ReactNode;
+    primary?: boolean;
 };
 
-const CustomLink: React.FC<LinkProps> = ({ onPress, children }) => {
+const CustomLink: React.FC<LinkProps> = ({ onPress, children, primary }) => {
     return (
         <TouchableOpacity onPress={onPress}>
-            <Text>{children}</Text>
+            <CustomText bold gray={!primary} primary={primary} >{children}</CustomText>
         </TouchableOpacity>
     );
 };
